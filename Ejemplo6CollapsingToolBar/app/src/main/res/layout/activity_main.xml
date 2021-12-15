@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.myteam.androides.react.ejemplo5recyclerview.MainActivity">
+
+    <!--Debemos modificar a altura del appBarLayout para poder hacer el efecto-->
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <!--El colapsing layout debe de contener al toolbar y al tab bar-->
+        <!--Tambien podemos probar con
+            app:layout_scrollFlags="scroll|enterAlways"
+            para que el action bar se contenga, y este se expande hasta que
+            su primer elemento aparece
+
+            Con este efecto la barra de accion no desaparece, solo se contrae
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+        -->
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
+
+            <!--agregamos themes al toolbar para que este
+            tenga la animacion de la barra hacia arriba-->
+
+            <!--Si quiero que desaparezcan los tabs en la barra
+             de notificaciones, debo de colocarle un color a
+             esta barra para que parezca que desaparece-->
+            <!--agregamos collapeMode="pin" (Collapsing bar)-->
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+
+                app:layout_collapseMode="pin"
+                />
+
+            <!-- agregamos un tab -->
+            <!--Para que las tabs no desaparezcan al hacer scroll
+            solo debemo de quitar
+            app:layout_scrollFlags="scroll|enterAlways
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"-->
+            <!--<android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|snap">
+            </android.support.design.widget.TabLayout>
+            -->
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!--Contenido real de la aplicacion-->
+    <include layout="@layout/content_main" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+
+
+</android.support.design.widget.CoordinatorLayout>
